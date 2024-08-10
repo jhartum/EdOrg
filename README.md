@@ -25,7 +25,7 @@ To get started with this project, follow these steps:
 
 3. **Start the Development Server**:
    ```bash
-   uvicorn src.main:app --host=0.0.0.0 --port=8000
+   poetry run uvicorn src.main:app --host=0.0.0.0 --port=8000
    ```
 
 4. **Access the Site**: Open your browser and navigate to `http://localhost:8000`.
