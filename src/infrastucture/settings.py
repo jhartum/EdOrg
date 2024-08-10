@@ -6,7 +6,7 @@ from pathlib import Path
 import msgspec
 from dotenv import load_dotenv
 
-APP_DIR = Path(__file__).resolve().parent
+APP_DIR = Path(__file__).resolve().parent.parent
 
 
 class AppSettings(msgspec.Struct):
@@ -14,6 +14,7 @@ class AppSettings(msgspec.Struct):
 
     debug: bool = False
     root_dir: Path = APP_DIR
+    db_path: Path = APP_DIR / "infrastructure" / "db"
 
     @classmethod
     def from_env(

@@ -1,7 +1,7 @@
 """Main entry point for the application."""
 
-from src.app import create_app
-from src.settings import AppSettings
+from src.application.app import create_app
+from src.infrastucture.settings import AppSettings
 
 
 app_settings = AppSettings.from_env()
