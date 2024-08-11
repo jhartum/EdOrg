@@ -13,5 +13,6 @@ session_auth = SessionAuth[User, ServerSideSessionBackend](
         "/auth/login",
         "/auth/login_form",
         "/static",
+        "/"
     ],
 )

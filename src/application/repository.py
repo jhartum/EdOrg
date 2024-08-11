@@ -1,18 +1,18 @@
-from tinydb import TinyDB, Query
-
-from src.infrastructure.settings import app_settings
 import msgspec
+from tinydb import TinyDB, Query
+from src.infrastructure.settings import app_settings
+from src.infrastructure.db import models
+from src.infrastructure.types import BaseStruct
 
 
-class Entity(msgspec.Struct):
-    def to_dict(self):
-        return {f: getattr(self, f) for f in self.__struct_fields__}
+class Entity(BaseStruct, frozen=True):
+    pass
 
 
-class Repository:
-    def __init__(self, session: TinyDB, table: str) -> None:
+class NewsRepository:
+    def __init__(self, session: TinyDB) -> None:
         self.session = session
-        self.table = self.session.table(table)
+        self.table = self.session.table("news_articles")
         self.query = Query()
 
     def get(self, id: int):
@@ -22,8 +22,9 @@ class Repository:
 
         return instance
 
-    def create(self, data: Entity):
-        self.table.insert(data.to_dict())
+    def create_news_article(self, data: models.NewsArticle):
+        data_json = msgspec.json.encode(data)
+        self.table.insert(msgspec.json.decode(data_json))
 
     def update(self, id: int, data: Entity):
         self.table.update(data.to_dict(), self.query.id == id)
@@ -36,4 +37,4 @@ class Repository:
 
 
 async def provide_news_repository():
-    yield Repository(TinyDB(app_settings.db_path / "storage.json"), "news_articles")
+    yield NewsRepository(TinyDB(app_settings.db_path / "storage.json"))

@@ -5,14 +5,14 @@ from litestar.contrib.htmx.response import HTMXTemplate
 from tinydb import TinyDB
 
 
-from src.application.repository import Repository
+from src.application.repository import NewsRepository
 from src.infrastructure.db import get_db_session
 
 
 @get("/", name="index", exclude_from_auth=True)
 async def index(db_session: TinyDB) -> HTMXTemplate:
     """Index page."""
-    news_repository = Repository(db_session, "news_articles")
+    news_repository = NewsRepository(db_session)
 
     return HTMXTemplate(
         template_name="index.html",

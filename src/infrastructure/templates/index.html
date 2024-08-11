@@ -30,14 +30,16 @@
                 </a>
               </h2>
             </header>
+            {% for path in article.images_path %}
+              <figure>
+                <img 
+                    src="{{ url_for("static", file_path=path|safe ) }}"
+                  width="800" height="300"
+                  alt="Alt text" class="lazy" data-uk-img>
+                <figcaption class="uk-padding-small uk-text-center uk-text-muted">Caption of the image</figcaption>
+              </figure>
 
-            <figure>
-              <img 
-                src="{{ url_for("static", file_path=article.image_path|safe ) }}"
-                width="800" height="300"
-                alt="Alt text" class="lazy" data-uk-img>
-              <figcaption class="uk-padding-small uk-text-center uk-text-muted">Caption of the image</figcaption>
-            </figure>
+            {% endfor %}
 
             {{ article.description|safe }} 
 
