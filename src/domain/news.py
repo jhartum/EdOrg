@@ -1,7 +1,7 @@
-import msgspec
+from src.application.repository import Entity
 
 
-class NewsArticle(msgspec.Struct):
+class NewsArticle(Entity):
     """Domain model for news articles."""
 
     id: int

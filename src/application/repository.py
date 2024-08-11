@@ -1,6 +1,6 @@
 from tinydb import TinyDB, Query
 
-from src.infrastucture.settings import APP_DIR
+from src.infrastructure.settings import app_settings
 import msgspec
 
 
@@ -36,6 +36,4 @@ class Repository:
 
 
 async def provide_news_repository():
-    yield Repository(
-        TinyDB(APP_DIR / "infrastucture" / "db" / "storage.json"), "news_articles"
-    )
+    yield Repository(TinyDB(app_settings.db_path / "storage.json"), "news_articles")

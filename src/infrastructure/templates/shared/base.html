@@ -4,20 +4,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
   <link href="{{ url_for("static", file_path="css/header.css" ) }}" rel="stylesheet" />
-  <link href="{{ url_for("static", file_path="css/output.css" ) }}" rel="stylesheet" />
-  <script src="{{ url_for("static", file_path="js/htmx.min-2.0.0.js" ) }}"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+  <link href="{{ url_for("static", file_path="assets/css/output.css" ) }}" rel="stylesheet" />
+  <script src="{{ url_for("static", file_path="htmx/htmx.js") }}"></script>
+  <script src="{{ url_for("static", file_path="alpinejs/dist/cdn.min.js") }}"></script>
+  
   <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
   <script src="https://unpkg.com/htmx-ext-class-tools@2.0.0/class-tools.js"></script>
 
   <!-- UIkit CSS -->
-  <link rel="stylesheet" href="{{ url_for("static", file_path="css/uikit.min.css" ) }}" />
+  <link rel="stylesheet" href="{{ url_for("static", file_path="uikit/dist/css/uikit.min.css" ) }}" />
 
   <!-- UIkit JS -->
-  <script src="{{ url_for("static", file_path="js/uikit.min.js" ) }}"></script>
-  <script src="{{ url_for("static", file_path="js/uikit-icons.min.js" ) }}"></script>
+  <script src="{{ url_for("static", file_path="uikit/dist/js/uikit.min.js" ) }}"></script>
+  <script src="{{ url_for("static", file_path="uikit/dist/js/uikit-icons.min.js" ) }}"></script>
+
   <title>{% block title %} Education Organization {% endblock %}</title>
 </head>
 

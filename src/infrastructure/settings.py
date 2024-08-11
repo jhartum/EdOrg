@@ -12,9 +12,17 @@ APP_DIR = Path(__file__).resolve().parent.parent
 class AppSettings(msgspec.Struct):
     """Settings for the application."""
 
+    admin_username: str
+    admin_password: str
+
     debug: bool = False
     root_dir: Path = APP_DIR
     db_path: Path = APP_DIR / "infrastructure" / "db"
+    session_store_path: Path = APP_DIR / "infrastructure" / "db" / "session_data"
+
+    static_path: Path = APP_DIR / "infrastructure" / "static"
+    templates_path: Path = APP_DIR / "infrastructure" / "templates"
+
 
     @classmethod
     def from_env(
@@ -32,3 +40,6 @@ class AppSettings(msgspec.Struct):
             type=AppSettings,
             strict=False,
         )
+
+
+app_settings = AppSettings.from_env()
