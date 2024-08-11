@@ -4,7 +4,6 @@ from uuid import UUID
 
 import msgspec
 from litestar import Request, Response, Router, get, post
-from litestar.connection import ASGIConnection
 from litestar.contrib.htmx.response import HTMXTemplate
 from litestar.exceptions import HTTPException
 
@@ -21,9 +20,7 @@ class User(msgspec.Struct):
 users_by_id, users_by_name = get_default_users()
 
 
-async def retrieve_user_handler(
-    session: dict[str, Any], connection: "ASGIConnection[Any, Any, Any, Any]"
-) -> User | None:
+async def retrieve_user_handler(session: dict[str, Any], connection) -> User | None:
     return users_by_id.get(user_id) if (user_id := session.get("user_id")) else None
 
 

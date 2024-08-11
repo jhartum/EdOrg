@@ -1,7 +1,7 @@
-from tinydb import TinyDB, Query
+import msgspec
+from tinydb import Query, TinyDB
 
 from src.infrastructure.settings import app_settings
-import msgspec
 
 
 class Entity(msgspec.Struct):

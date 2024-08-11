@@ -1,9 +1,10 @@
 [tool.poetry]
 name = "EdOrg"
 version = "0.1.0"
-description = ""
+description = "Simple fullstack python web site for education organization using LiteStar & HTMX"
 authors = ["jhartum"]
 readme = "README.md"
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.12"
@@ -15,10 +16,84 @@ pytailwindcss = "^0.2.0"
 tinydb = "^4.8.0"
 bcrypt = "^4.2.0"
 
+[tool.poetry.group.dev.dependencies]
+# Type annotation
+pyright = "1.1.354"
+
+# Formatting
+ruff = "^0.5.2"
+
+
+[tool.ruff]
+line-length = 98
+lint.ignore = [
+  "E501",
+  "F405",
+  "F403",
+  "N818",
+  "N812",
+  "N805",
+  "E402",
+  "W293",
+  "DJ001",
+  "DJ008",
+  "PTH123",
+  "E731",
+  "C408",   
+  "TD002",
+  "TD003",
+  "FIX002",
+  "ISC001",
+]
+
+lint.select = [
+  "E",
+  "F",
+  "I",
+  "T20",
+  "W",
+  "N",
+  "YTT",
+  "DJ",
+  "ISC",
+  "ICN",
+  "RSE",
+  "PTH",
+  "C4",
+  "ISC",
+  "ICN",
+  "PIE",
+  "SIM",
+  "TCH",
+  "TD",
+  "FIX",
+  "PD",
+  "PLE",
+  "UP",
+  "TID",
+  "B011",
+]
+
+[tool.pyright]
+exclude = [
+  "**/__pycache__",
+  "**/.hypothesis",
+  "**/.mypy_cache",
+  "**/.ruff_cache",
+  "**/.pytest_cache",
+  "**/migrations",
+]
+include = ["src"]
+
+
+reportUnboundVariable = "error"
+reportMissingTypeStubs = "none"
+reportIncompatibleVariableOverride = "none"
+reportIncompatibleMethodOverride = "none"
+reportInvalidTypeForm = "none"
+useLibraryCodeForTypes = false
+
 
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry_core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
-
-[settings]
-package-mode = false

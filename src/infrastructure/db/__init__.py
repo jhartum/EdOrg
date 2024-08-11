@@ -1,4 +1,5 @@
 from tinydb import TinyDB
+
 from src.infrastructure.settings import app_settings
 
 

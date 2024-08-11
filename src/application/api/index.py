@@ -4,7 +4,6 @@ from litestar import Router, get
 from litestar.contrib.htmx.response import HTMXTemplate
 from tinydb import TinyDB
 
-
 from src.application.repository import Repository
 from src.infrastructure.db import get_db_session
 

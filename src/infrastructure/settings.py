@@ -23,11 +23,8 @@ class AppSettings(msgspec.Struct):
     static_path: Path = APP_DIR / "infrastructure" / "static"
     templates_path: Path = APP_DIR / "infrastructure" / "templates"
 
-
     @classmethod
-    def from_env(
-        cls, env_file: Path = Path(".env"), prefix: str = "APP_"
-    ) -> "AppSettings":
+    def from_env(cls, env_file: Path = Path(".env"), prefix: str = "APP_") -> "AppSettings":
         """Load settings from environment variables."""
         load_dotenv(env_file, verbose=True)
         transformed_keys = {
