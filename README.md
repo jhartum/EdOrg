@@ -23,10 +23,14 @@ To get started with this project, follow these steps:
    poetry install
    npm i
    ```
+3. **Create the Environment Configuration File**:
+   ```bash
+   cp .env.example .env
+   ```
 
-3. **Start the Development Server**:
+4. **Start the Development Server**:
    ```bash
    poetry run uvicorn src.main:app --host=0.0.0.0 --port=8000
    ```
 
-4. **Access the Site**: Open your browser and navigate to `http://localhost:8000`.
+5. **Access the Site**: Open your browser and navigate to `http://localhost:8000`.
