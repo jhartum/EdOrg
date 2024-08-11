@@ -34,3 +34,10 @@ To get started with this project, follow these steps:
    ```
 
 5. **Access the Site**: Open your browser and navigate to `http://localhost:8000`.
+
+
+## Build and run the application with Docker.
+
+```bash
+docker build -t edorg .
+docker run -p 11111:11111 edorg
