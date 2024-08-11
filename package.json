@@ -1,0 +1,17 @@
+{
+  "name": "edorg",
+  "version": "1.0.0",
+  "description": "This repository contains the source code for a dynamic and responsive website developed for an educational organization.  The project leverages the **Litestar** framework for the backend, **HTMX** for front-end interactivity, and **UIkit** for a modern and consistent design system.",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "alpinejs": "^3.14.1",
+    "htmx": "^0.0.2",
+    "hyperscript.org": "^0.9.12",
+    "uikit": "^3.21.9"
+  }
+}

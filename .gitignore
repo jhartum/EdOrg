@@ -225,5 +225,6 @@ $RECYCLE.BIN/
 
 _data.json
 .DS_Store
-session_data/*
+session_data
 assets
+node_modules

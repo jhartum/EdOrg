@@ -13,7 +13,7 @@ from src.infrastructure.db import get_db_session
 @get("/add_news_article", name="add_news_article_page")
 async def add_news_article_page(db_session: TinyDB) -> HTMXTemplate:
     """Index page."""
-    news_repository = Repository(db_session, "news_articles")
+    Repository(db_session, "news_articles")
 
     return HTMXTemplate(
         template_name="add_news_article.html",

@@ -20,7 +20,8 @@ To get started with this project, follow these steps:
 
 2. **Install Dependencies**:
    ```bash
-   poetry install 
+   poetry install
+   npm i
    ```
 
 3. **Start the Development Server**:

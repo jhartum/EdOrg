@@ -11,7 +11,7 @@ session_auth = SessionAuth[User, ServerSideSessionBackend](
     session_backend_config=ServerSideSessionConfig(),
     exclude=[
         "/auth/login",
-        "/static",
         "/auth/login_form",
+        "/static",
     ],
 )

@@ -2,7 +2,7 @@ from contextlib import asynccontextmanager
 import subprocess
 
 from litestar import Litestar
-from src.infrastructure import settings
+from src.infrastructure.settings import app_settings
 
 
 @asynccontextmanager
@@ -12,17 +12,9 @@ async def tailwind(app: Litestar):
             [
                 "tailwindcss",
                 "-i",
-                str(
-                    settings.APP_DIR / "infrastructure" / "static" / "css" / "input.css"
-                ),
+                str(app_settings.static_path / "assets" / "css" / "input.css"),
                 "-o",
-                str(
-                    settings.APP_DIR
-                    / "infrastructure"
-                    / "static"
-                    / "css"
-                    / "output.css"
-                ),
+                str(app_settings.static_path / "assets" / "css" / "output.css"),
             ]
         )
     except Exception as e:

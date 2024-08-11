@@ -34,12 +34,19 @@ def create_app(app_settings: AppSettings) -> Litestar:
             )
         )
     )
+    statics = [
+        create_static_files_router(
+            path="/static",
+            directories=[
+                app_settings.static_path,
+                app_settings.root_dir.parent / "node_modules",
+            ],
+        ),
+    ]
 
     return Litestar(
         route_handlers=[
-            create_static_files_router(
-                path="/static", directories=[app_settings.static_path]
-            ),
+            *statics,
             index.router,
             auth_api.router,
             news_router,
@@ -51,4 +58,5 @@ def create_app(app_settings: AppSettings) -> Litestar:
         plugins=[FlashPlugin(config=FlashConfig(template_config=template_config))],
         stores={"sessions": FileStore(path=app_settings.session_store_path)},
         lifespan=[lifespan.tailwind],
+        middleware=[session_auth.middleware],
     )
