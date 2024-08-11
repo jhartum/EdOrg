@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "alpinejs": "^3.14.1",
-    "htmx": "^0.0.2",
+    "htmx.org": "^1.9.12",
     "hyperscript.org": "^0.9.12",
     "uikit": "^3.21.9"
   }

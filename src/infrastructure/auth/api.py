@@ -1,6 +1,6 @@
+import uuid
 from typing import Any
 from uuid import UUID
-import uuid
 
 import msgspec
 from litestar import Request, Response, Router, get, post
@@ -24,11 +24,7 @@ users_by_id, users_by_name = get_default_users()
 async def retrieve_user_handler(
     session: dict[str, Any], connection: "ASGIConnection[Any, Any, Any, Any]"
 ) -> User | None:
-    from rich import print 
-
-    print(session)
     return users_by_id.get(user_id) if (user_id := session.get("user_id")) else None
-
 
 
 @post("/login_form")
@@ -38,11 +34,9 @@ async def login_form(request: Request) -> Response:
     password: str = form.get("password", None)
     assert username and password
 
-    user = users_by_name.get(username)
+    user = users_by_name.get(username, None)
     if user and verify_password(password, user["password"]):
         request.session["user_id"] = user["id"]
-        from rich import print
-        print(request.session)
         return Response(content="User logged in", status_code=200)
 
     raise HTTPException(detail="Invalid credentials.", status_code=401)
@@ -57,7 +51,7 @@ async def signup_form(request: Request) -> Response:
 
     if username in users_by_name:
         raise HTTPException(detail="Username already exists.", status_code=400)
-    
+
     # Build new user
     hashed_password = hash_password(password)
     new_user = dict(id=str(uuid.uuid4()), username=username, password=hashed_password)

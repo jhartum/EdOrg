@@ -58,5 +58,4 @@ def create_app(app_settings: AppSettings) -> Litestar:
         plugins=[FlashPlugin(config=FlashConfig(template_config=template_config))],
         stores={"sessions": FileStore(path=app_settings.session_store_path)},
         lifespan=[lifespan.tailwind],
-        middleware=[session_auth.middleware],
     )
