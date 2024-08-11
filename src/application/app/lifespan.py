@@ -12,7 +12,7 @@ async def tailwind(app: Litestar):
             [
                 "tailwindcss",
                 "-i",
-                str(app_settings.static_path / "assets" / "css" / "input.css"),
+                str(app_settings.static_path / "css" / "input.css"),
                 "-o",
                 str(app_settings.static_path / "assets" / "css" / "output.css"),
             ]
