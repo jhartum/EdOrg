@@ -229,3 +229,4 @@ session_data
 assets
 node_modules
 src/infrastructure/static/img/news
+storage.json
