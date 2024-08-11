@@ -230,3 +230,4 @@ assets
 node_modules
 src/infrastructure/static/img/news
 src/infrastructure/db/storage.json
+storage.json
