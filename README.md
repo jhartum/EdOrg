@@ -3,11 +3,17 @@
 This repository contains the source code for a dynamic and responsive website developed for an educational organization. 
 The project leverages the **Litestar** framework for the backend, **HTMX** for front-end interactivity, and **UIkit** for a modern and consistent design system.
 
-## Technologies Used
-- **Litestar**: Provides the backend functionality with a focus on simplicity and performance, supporting easy API creation and database integration.
-- **HTMX**: Enhances user interactions with AJAX-like functionality directly in the HTML, reducing the need for extensive JavaScript.
-- **UIkit**: A lightweight and modular front-end framework that helps create a cohesive and stylish user interface with pre-designed components and utilities.
-- **TinyDB**: A lightweight, document-oriented database that stores data in JSON format, making it easy to use for small to medium-sized datasets without the need for a full-fledged database server.
+## Core Technologies
+
+- **Litestar**: A backend framework that emphasizes simplicity and performance, supporting easy API creation and database integration.
+- **HTMX**: Enhances user interactions with AJAX-like functionality directly in the HTML, minimizing the need for extensive JavaScript.
+- **UIkit**: A lightweight and modular front-end framework that provides a cohesive and stylish user interface with pre-designed components and utilities.
+- **TinyDB**: A lightweight, document-oriented database that stores data in JSON format, ideal for small to medium-sized datasets without requiring a full-fledged database server.
+
+## Development Tools
+
+- **Pyright**: A static type checker for Python that helps ensure type safety in your codebase.
+- **Ruff**: A fast Python linter and formatter that enforces code quality and style standards.
 
 ## Setup and Installation
 To get started with this project, follow these steps:
