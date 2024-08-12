@@ -1,7 +1,8 @@
-from contextlib import asynccontextmanager
 import subprocess
+from contextlib import asynccontextmanager
 
 from litestar import Litestar
+
 from src.infrastructure.settings import app_settings
 
 
@@ -18,6 +19,6 @@ async def tailwind(app: Litestar):
             ]
         )
     except Exception as e:
-        print(f"Error running tailwindcss: {e}")
+        print(f"Error running tailwindcss: {e}")  # noqa: T201
 
     yield
