@@ -40,3 +40,6 @@ class AppSettings(msgspec.Struct):
 
 
 app_settings = AppSettings.from_env()
+from rich import print
+
+print(app_settings)
