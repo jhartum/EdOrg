@@ -24,5 +24,6 @@ COPY . /code
 
 
 EXPOSE ${PORT}
+RUN chmod +x .code 
 CMD ["sh", "-c", "uvicorn src.main:app --host 0.0.0.0 --port ${PORT}"]
 
