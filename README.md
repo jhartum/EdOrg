@@ -45,4 +45,4 @@ To get started with this project, follow these steps:
 ## Build and run the application with Docker.
 
 ```bash
-docker build -t edorg . && docker run -p 8000:8000 edorg
+docker build -t edorg . && docker run -d -p 8000:8000 edorg
