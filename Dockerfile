@@ -12,7 +12,7 @@ RUN poetry export -f requirements.txt --output requirements.txt --without-hashes
 
 FROM python:3.12-slim
 
-ENV PORT=11111
+ENV PORT=8000
 WORKDIR /code
 
 COPY --from=requirements-stage /tmp/requirements.txt /code/requirements.txt
