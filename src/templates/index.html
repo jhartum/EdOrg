@@ -17,27 +17,48 @@
   <div class="uk-container">
     <div class="uk-grid" data-ukgrid>
       <div class="uk-width-2-3@m">
+        
         <h4 class="uk-heading-line uk-text-bold"><span>Новости</span></h4>
         {% for article in articles %}
 
           <article class="uk-section uk-section-small uk-padding-remove-top">
 
             <header>
+
               <h2 class="uk-margin-remove-adjacent uk-text-bold uk-margin-small-bottom">
-                <a title="Fusce facilisis tempus magna ac dignissim." class="uk-link-reset"
-                  href="#">
+                <a title="Fusce facilisis tempus magna ac dignissim." class="uk-link-reset">
                   {{ article.title }}
                 </a>
               </h2>
+
+              <a hx-delete="{{ url_for('delete_news_article', article_id=article.id) }}"> 
+
+                {% if 'user_id' in request.session %}
+                    Удалить новость
+                {% endif %}
+
+              </a>
+
+              <a href=/news_articles/{{ article.id }}> 
+
+                {% if 'user_id' in request.session %}
+                    Редактировать новость
+                {% endif %}
+
+              </a>
+
             </header>
 
-            <figure>
-              <img 
-                src="{{ url_for("static", file_path=article.image_path|safe ) }}"
-                width="800" height="300"
-                alt="Alt text" class="lazy" data-uk-img>
-              <figcaption class="uk-padding-small uk-text-center uk-text-muted">Caption of the image</figcaption>
-            </figure>
+            {% for path in article.images %}
+              <figure>
+                <img 
+                  src="{{ url_for("static", file_path=path|safe ) }}"
+                  width="800" height="300"
+                  alt="Alt text" class="lazy" data-uk-img>
+                <figcaption class="uk-padding-small uk-text-center uk-text-muted"></figcaption>
+              </figure>
+
+            {% endfor %}
 
             {{ article.description|safe }} 
 

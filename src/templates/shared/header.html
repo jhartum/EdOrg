@@ -7,6 +7,13 @@
           <img src="{{ url_for("static", file_path="img/logo.png" ) }}" alt="Logo">
         </a>
       </div>
+      <div class="uk-navbar-right nav-overlay">
+        <a class="uk-navbar-item" href=/add_news_article>
+          {% if 'user_id' in request.session %}
+              Создать новость
+          {% endif %}
+        </a>
+      </div>
     </nav>
     <nav id="navbar" data-uk-navbar="mode: click;">
       <div class="uk-navbar-center nav-overlay">

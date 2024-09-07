@@ -228,3 +228,5 @@ _data.json
 session_data
 assets
 node_modules
+src/core/infrastructure/db/storage.json
+src/core/infrastructure/db/news_article_images/*

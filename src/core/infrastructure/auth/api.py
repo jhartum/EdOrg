@@ -7,8 +7,8 @@ from litestar import Request, Response, Router, get, post
 from litestar.contrib.htmx.response import HTMXTemplate
 from litestar.exceptions import HTTPException
 
-from src.infrastructure.auth.hash import hash_password, verify_password
-from src.infrastructure.auth.setup import get_default_users
+from src.core.infrastructure.auth.hash import hash_password, verify_password
+from src.core.infrastructure.auth.setup import get_default_users
 
 
 class User(msgspec.Struct):
@@ -36,7 +36,7 @@ async def login_form(request: Request) -> Response:
         request.session["user_id"] = user["id"]
         return Response(content="User logged in", status_code=200)
 
-    raise HTTPException(detail="Invalid credentials.", status_code=401)
+    return Response(content="Invalid credentials", status_code=401)
 
 
 @post("/signup_form")

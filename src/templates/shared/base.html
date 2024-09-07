@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
 
   <link href="{{ url_for("static", file_path="css/header.css" ) }}" rel="stylesheet" />
   <link href="{{ url_for("static", file_path="assets/css/output.css" ) }}" rel="stylesheet" />
@@ -20,6 +21,9 @@
   <!-- UIkit JS -->
   <script src="{{ url_for("static", file_path="uikit/dist/js/uikit.min.js" ) }}"></script>
   <script src="{{ url_for("static", file_path="uikit/dist/js/uikit-icons.min.js" ) }}"></script>
+  
+    
+  <meta name="htmx-config" content='{"responseHandling": [{"code":".*", "swap": true}]}' /> <!--all responses are swapped-->
 
   <title>{% block title %} Education Organization {% endblock %}</title>
 </head>

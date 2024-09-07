@@ -1,5 +1,5 @@
-from src.infrastructure.auth.hash import hash_password
-from src.infrastructure.settings import app_settings
+from src.core.infrastructure.auth.hash import hash_password
+from src.core.infrastructure.settings import app_settings
 
 SUPERUSER_MAGIC_ID = "68c754cc-7e03-4fb3-ac3c-6bb47016d375"
 
