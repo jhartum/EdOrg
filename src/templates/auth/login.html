@@ -1,0 +1,34 @@
+{% extends "shared/base.html" %}
+{% block content %}
+
+<div class="uk-section uk-flex uk-flex-middle uk-flex-center uk-height-viewport">
+  <div class="uk-card uk-card-default uk-card-body uk-width-1-3@m">
+    <h3>Log in</h3>
+    <form 
+      hx-post="login_form" 
+      hx-target="#message" 
+    >
+      <div class="uk-margin"><input type="text" name="username" placeholder="Username" required></div>
+      <div class="uk-margin"><input type="password" name="password" placeholder="Password" required></div>
+      <div class="uk-margin"><button type="submit">Login</button></div>
+    </form>
+    
+    <output id="message" ></output>
+
+  </div>
+</div>
+
+<!-- Script to handle 401 responses -->
+<script>
+  document.body.addEventListener('htmx:responseError', function(event) {
+      if (event.detail.xhr.status === 401) {
+          // Access the response text from the 401 error
+          const errorMessage = event.detail.xhr.responseText;
+
+          // Display the error message in a specific div or handle it as needed
+          document.getElementById('message').innerHTML = `<div class="error-message">Unauthorized: ${errorMessage}</div>`;
+      }
+  });
+</script>
+
+{% endblock %}

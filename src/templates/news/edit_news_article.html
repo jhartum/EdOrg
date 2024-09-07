@@ -1,0 +1,99 @@
+{% extends "shared/base.html" %}
+{% block content %}
+<section class="uk-section uk-section-small">
+
+</section>
+<div class="uk-section uk-section-muted uk-flex uk-flex-center uk-padding">
+  <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
+
+    <h3 class="uk-card-title uk-text-center">Изменение новости</h3>
+
+    <form 
+      id="form" 
+      enctype="multipart/form-data"
+      hx-encoding="multipart/form-data" 
+      hx-post="{{ url_for("edit_news_article_form", article_id=article.id) }}"
+    >
+      <!-- Название новости -->
+      <div class="uk-margin">
+        <label class="uk-form-label" for="title">Название новости</label>
+        <div class="uk-form-controls">
+          <input 
+            class="uk-input" 
+            id="title" 
+            name='title' 
+            type="text" 
+            value="{{ article.title }}"
+          required>
+        </div>
+      </div>
+
+      <!-- Описание новости -->
+      <div class="uk-margin">
+        <label class="uk-form-label" for="description">Описание новости</label>
+        <div class="uk-form-controls">
+          <textarea 
+            class="uk-textarea" id="description" name='description' rows="5" placeholder="Введите описание новости"
+            required>{{ article.description }}</textarea>
+        </div>
+      </div>
+
+      
+      <!-- Загрузка изображений -->
+      <div class="uk-margin">
+        <label class="uk-form-label" for="form-images">Добавить изображений</label>
+        <div uk-form-custom="target: true">
+          <input type="file" id="images" name='images' value="c:/passwords.txt" multiple>
+
+          <input class="uk-input uk-form-width-medium" type="text" placeholder="Выберите файлы" disabled>
+        </div>
+      </div>
+
+      <progress id="progress_htmx" value="0" max="100"></progress>
+
+      <!-- Кнопка отправки -->
+      <div class="uk-margin">
+        <button class="uk-button uk-button-primary uk-width-1-1" type="submit">Обновить новость</button>
+      </div>
+    </form>
+
+    <div id="response"></div>
+
+    
+    {% for path in article.images %}
+
+      <figure>
+        <img 
+          src="{{ url_for("static", file_path=path|safe ) }}"
+          width="800" height="300"
+          alt="Alt text" class="lazy" 
+          data-uk-img
+        >
+
+        <figcaption class="uk-padding-small uk-text-center uk-text-muted">Caption of the image</figcaption>
+
+        <form hx-post="{{ url_for("delete_image_from_news_article") }}">
+          <input type="hidden" name="article_id" value="{{ article.id }}">
+          <input type="hidden" name="image" value="{{ path }}">
+
+          <button class="uk-button uk-button-default" type="submit">
+            Удалить изображение
+          </button>
+        </form> 
+      </figure>
+
+    {% endfor %}
+
+  </div>
+</div>
+
+<script>
+  htmx.on("#form", "htmx:xhr:progress", function (evt) {
+    htmx
+      .find("#progress_htmx")
+      .setAttribute("value", (evt.detail.loaded / evt.detail.total) * 100);
+  });
+</script>
+
+
+{% endblock %}
