@@ -1,6 +1,12 @@
 import subprocess
 
 
+def setup():
+    subprocess.run(["poetry", "install"])
+    subprocess.run(["npm", "i"])
+    subprocess.run(["cp", ".env.example", ".env"])
+
+
 def runserver():
     subprocess.run(["poetry", "run", "uvicorn", "src.main:app", "--host=0.0.0.0", "--port=8000"])
 

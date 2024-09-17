@@ -26,26 +26,19 @@ To get started with this project, follow these steps:
    cd EdOrg
    ```
 
-2. **Install Dependencies**:
+2. **Install Dependencies and create the Environment Configuration File**:
 
    ```bash
-   poetry install
-   npm i
+   poetry run setup
    ```
 
-3. **Create the Environment Configuration File**:
-
-   ```bash
-   cp .env.example .env
-   ```
-
-4. **Start the Development Server**:
+3. **Start the Development Server**:
 
    ```bash
    poetry run runserver
    ```
 
-5. **Access the Site**: Open your browser and navigate to `http://localhost:8000`.
+4. **Access the Site**: Open your browser and navigate to `http://localhost:8000`.
 
 ## Build and run the application with Docker
 
