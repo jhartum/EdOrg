@@ -6,6 +6,8 @@ authors = ["jhartum"]
 readme = "README.md"
 package-mode = false
 
+packages = [{ include = "src" }]
+
 [tool.poetry.dependencies]
 python = "^3.12"
 litestar = "^2.10.0"
@@ -97,3 +99,8 @@ useLibraryCodeForTypes = false
 [build-system]
 requires = ["poetry_core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+runserver = "src.scripts:runserver"
+check = "src.scripts:check"
+format = "src.scripts:format"

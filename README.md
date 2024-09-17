@@ -1,6 +1,6 @@
 # Education Organization Website Using Litestar and HTMX
 
-This repository contains the source code for a dynamic and responsive website developed for an educational organization. 
+This repository contains the source code for a dynamic and responsive website developed for an educational organization.
 The project leverages the **Litestar** framework for the backend, **HTMX** for front-end interactivity, and **UIkit** for a modern and consistent design system.
 
 ## Core Technologies
@@ -16,33 +16,51 @@ The project leverages the **Litestar** framework for the backend, **HTMX** for f
 - **Ruff**: A fast Python linter and formatter that enforces code quality and style standards.
 
 ## Setup and Installation
+
 To get started with this project, follow these steps:
 
 1. **Clone the Repository**:
+
    ```bash
    git clone https://github.com/jhartum/EdOrg.git
    cd EdOrg
    ```
 
 2. **Install Dependencies**:
+
    ```bash
    poetry install
    npm i
    ```
+
 3. **Create the Environment Configuration File**:
+
    ```bash
    cp .env.example .env
    ```
 
 4. **Start the Development Server**:
+
    ```bash
-   poetry run uvicorn src.main:app --host=0.0.0.0 --port=8000
+   poetry run runserver
    ```
 
 5. **Access the Site**: Open your browser and navigate to `http://localhost:8000`.
 
-
-## Build and run the application with Docker.
+## Build and run the application with Docker
 
 ```bash
 docker build -t edorg . && docker run -d -p 8000:8000 edorg
+```
+
+## Linting
+
+```bash
+poetry run check
+```
+
+## Formatting
+
+```bash
+poetry run format
+```
