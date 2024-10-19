@@ -6,6 +6,7 @@ import msgspec
 from litestar import Request, Response, Router, get, post
 from litestar.contrib.htmx.response import HTMXTemplate
 from litestar.exceptions import HTTPException
+from litestar.response import Redirect
 
 from src.core.infrastructure.auth.hash import hash_password, verify_password
 from src.core.infrastructure.auth.setup import get_default_users
@@ -29,7 +30,8 @@ async def login_form(request: Request) -> Response:
     form = await request.form()
     username: str = form.get("username", None)
     password: str = form.get("password", None)
-    assert username and password
+    if not (username and password):
+        raise ValueError("Username and password must be provided")
 
     user = users_by_name.get(username, None)
     if user and verify_password(password, user["password"]):
@@ -44,7 +46,8 @@ async def signup_form(request: Request) -> Response:
     form = await request.form()
     username: str = form.get("username", None)
     password: str = form.get("password", None)
-    assert username and password
+    if not (username and password):
+        raise ValueError("Username and password must be provided")
 
     if username in users_by_name:
         raise HTTPException(detail="Username already exists.", status_code=400)
@@ -69,6 +72,13 @@ async def login_page() -> HTMXTemplate:
     return HTMXTemplate(template_name="auth/login.html")
 
 
+@get("/logout", name="logout")
+async def logout(request: Request) -> Response:
+    """Log out."""
+    del request.session["user_id"]
+    return Redirect(path="/")
+
+
 @get("/signup", name="signup_page")
 async def signup_page() -> HTMXTemplate:
     """Sign up page."""
@@ -76,6 +86,6 @@ async def signup_page() -> HTMXTemplate:
 
 
 router = Router(
-    route_handlers=[login_form, signup_form, login_page, signup_page],
+    route_handlers=[login_form, signup_form, login_page, signup_page, logout],
     path="/auth",
 )
