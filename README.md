@@ -39,7 +39,7 @@ To get started with this project, follow these steps:
    ```
 
 4. **Access the Site**: Open your browser and navigate to `http://localhost:8000`
-   or you can check hosted build `http://jhartum.line.pm`.
+   or you can check hosted build `http://edorg.line.pm`.
 
 ## Build and run the application with Docker
 
