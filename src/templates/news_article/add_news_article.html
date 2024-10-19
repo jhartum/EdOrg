@@ -8,12 +8,7 @@
 
     <h3 class="uk-card-title uk-text-center">Создание новости</h3>
 
-    <form 
-      id="form" 
-      enctype="multipart/form-data"
-      hx-encoding="multipart/form-data" 
-      hx-post="{{ url_for("add_news_article_form") }}"
-    >
+    <form id="form" enctype="multipart/form-data" hx-encoding="multipart/form-data" hx-post="{{ url_for('add_news_article_form') }}">
       <!-- Название новости -->
       <div class="uk-margin">
         <label class="uk-form-label" for="title">Название новости</label>

@@ -17,7 +17,7 @@ from src.core.infrastructure.settings import AppSettings
 def create_app(app_settings: AppSettings) -> Litestar:
     """Create the Litestar app."""
 
-    from src.core.application.api import index, news
+    from src.core.application import api
     from src.core.infrastructure.auth import api as auth
 
     template_config = TemplateConfig(
@@ -47,9 +47,8 @@ def create_app(app_settings: AppSettings) -> Litestar:
     return Litestar(
         route_handlers=[
             *statics,
-            index.router,
+            api.router,
             auth.router,
-            news.router,
         ],
         on_app_init=[session_auth.on_app_init],
         template_config=template_config,

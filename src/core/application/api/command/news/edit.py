@@ -1,4 +1,4 @@
-"""Edit news article router."""
+"""Edit news article endpoints."""
 
 from typing import Annotated
 
@@ -49,33 +49,7 @@ async def edit_news_article_form(
     return ClientRefresh()
 
 
-class DeleteImageFromNewsArticleFormData(msgspec.Struct):
-    article_id: int
-    image_path: str
-
-
-@post("delete_image_from_news_article", name="delete_image_from_news_article")
-async def delete_image_from_news_article(
-    data: Annotated[
-        DeleteImageFromNewsArticleFormData, Body(media_type=RequestEncodingType.URL_ENCODED)
-    ],
-    news_article_repository: NewsArticleRepository,
-    image_repository: ImageRepository,
-) -> Response:
-    old_state = news_article_repository.get(data.article_id)
-
-    image_repository.delete_file(data.image_path)
-    news_article_repository.update(
-        NewsArticle(
-            **old_state.to_dict(exclude={"images_path"}),
-            images=[i for i in old_state.images if i != data.image_path],
-        )
-    )
-
-    return ClientRefresh()
-
-
-@get("news_articles/{article_id:int}", name="/news_articles")
+@get("news_article/{article_id:int}", name="/news_article")
 async def edit_news_article_page(
     article_id: int,
     news_article_repository: NewsArticleRepository,
@@ -83,5 +57,6 @@ async def edit_news_article_page(
     """Edit news article page."""
     article = news_article_repository.get(article_id)
     return HTMXTemplate(
-        template_name="news/edit_news_article.html", context={"article": article.to_dict()}
+        template_name="news_article/edit_news_article.html",
+        context={"article": article.to_dict()},
     )

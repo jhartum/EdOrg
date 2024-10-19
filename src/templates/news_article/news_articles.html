@@ -1,0 +1,26 @@
+<div >
+  <div>
+    {% for article in data['paginator'].items %}
+      {% if loop.last %}
+        <div
+          hx-get="{{ url_for("get_news_articles") }}?page={{ data['paginator'].offset + 1 }}"
+          hx-trigger="revealed"
+          hx-swap="afterend"
+        >
+          {% include "news_article/news_article.html" with context %}
+          <div class="uk-container uk-container-small">
+            <hr class="uk-margin-remove">
+          </div>
+        </div>
+      {% else %}
+        <div class="">
+          {% include "news_article/news_article.html" with context %}
+          <div class="uk-container uk-container-small">
+            <hr class="uk-margin-remove">
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
