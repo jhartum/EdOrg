@@ -35,7 +35,7 @@ To get started with this project, follow these steps:
 3. **Start the Development Server**:
 
    ```bash
-   poetry run runserver
+   poetry run devserver
    ```
 
 4. **Access the Site**: Open your browser and navigate to `http://localhost:8000`.
