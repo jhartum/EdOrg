@@ -1,4 +1,4 @@
-"""Add news article router."""
+"""Add news article endpoints."""
 
 from datetime import datetime
 from typing import Annotated
@@ -55,4 +55,4 @@ async def add_news_article_form(
 @get("/add_news_article", name="add_news_article_page")
 async def add_news_article_page() -> HTMXTemplate:
     """Add news article page."""
-    return HTMXTemplate(template_name="news/add_news_article.html")
+    return HTMXTemplate(template_name="news_article/add_news_article.html")

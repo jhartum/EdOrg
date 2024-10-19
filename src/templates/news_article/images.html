@@ -1,0 +1,36 @@
+{% if article.images %}
+<div class="uk-container uk-section">
+    <div class="uk-position-relative uk-visible-toggle uk-light" data-uk-slideshow="ratio: 16:9; animation: push; min-height: 270; velocity: 3">
+        <ul class="uk-slideshow-items">
+            {% for path in article.images %}
+                <li>
+                    <img 
+                        data-src="{{ url_for('static', file_path=path|safe) }}" 
+                        data-uk-img="target: !.uk-slideshow-items" 
+                        alt="" 
+                        data-uk-cover>
+                    <button uk-toggle="target: #image-confirm-modal" type="button" class="uk-position-top-right uk-position-small uk-slidenav uk-link-text">
+                        {% if 'user_id' in request.session %}
+                            <span uk-icon="trash"></span>
+                        {% endif %} 
+                    </button>
+                    
+                    <div id="image-confirm-modal" uk-modal>
+                        <div class="uk-modal-dialog uk-modal-body">
+                            <h2 class="uk-modal-title">Подтверждение</h2>
+                            <p class="uk-text-right">
+                                <button class="uk-button uk-button-default uk-modal-close" type="button">Нет</button>
+                                <button class="uk-button uk-button-primary" type="button">
+                                    <a class="uk-link-text" hx-delete="{{ url_for('delete_image_from_news_article', article_id=article.id, image=path) }}">Да</a> 
+                                </button>
+                            </p>
+                        </div>
+                    </div> 
+                </li>
+            {% endfor %}
+        </ul>
+        <a class="uk-position-center-left uk-position-small uk-slidenav" style="color: gainsboro;" href="#" data-uk-slidenav-previous="ratio: 1.5" data-uk-slideshow-item="previous"></a>
+        <a class="uk-position-center-right uk-position-small uk-slidenav" style="color: gainsboro;" href="#" data-uk-slidenav-next="ratio: 1.5" data-uk-slideshow-item="next"></a>
+    </div>
+</div>
+{% endif %}

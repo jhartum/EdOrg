@@ -1,4 +1,7 @@
+from itertools import islice
+
 import msgspec
+from litestar.pagination import AbstractSyncOffsetPaginator
 from tinydb import Query
 from tinydb.table import Document
 
@@ -21,8 +24,8 @@ class NewsArticleRepository:
 
         return msgspec.convert(instance, NewsArticle)
 
-    def get_all(self):
-        return self.table.all()
+    def get_all(self) -> list[NewsArticle]:
+        return [msgspec.convert(i, NewsArticle) for i in self.table.all()]
 
     def create(self, data: NewsArticle):
         data_json = msgspec.json.encode(data.to_dict())
@@ -40,3 +43,14 @@ class NewsArticleRepository:
 
 async def get_news_article_repository():
     yield NewsArticleRepository()
+
+
+class NewsArticlePaginator(AbstractSyncOffsetPaginator[NewsArticle]):
+    def __init__(self, repository: NewsArticleRepository):
+        self.data = repository.get_all()
+
+    def get_total(self) -> int:
+        return len(self.data)
+
+    def get_items(self, limit: int, offset: int) -> list[NewsArticle]:
+        return list(islice(islice(self.data, offset, None), limit))

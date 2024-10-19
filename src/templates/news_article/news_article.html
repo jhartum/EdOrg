@@ -1,0 +1,56 @@
+<section class="uk-section uk-article">
+
+  <div class="uk-container uk-container-small">
+    <h4 class="uk-margin-remove uk-text-bold">
+
+        {{ article.title }}
+
+        <a class="uk-link-text" href="/news_article/{{ article.id }}">
+            {% if 'user_id' in request.session %}
+                <span uk-icon="pencil"></span>
+            {% endif %}
+        </a>
+        
+        <button uk-toggle="target: #confirm-modal-{{ article.id }}" type="button">
+            {% if 'user_id' in request.session %}
+                <span uk-icon="trash"></span>
+            {% endif %} 
+        </button>
+        
+        
+    </h4>
+    <div id="confirm-modal-{{ article.id }}" uk-modal>
+        <div class="uk-modal-dialog uk-modal-body">
+            <h2 class="uk-modal-title">Подтверждение</h2>
+            <p class="uk-text-right">
+                <button class="uk-button uk-button-default uk-modal-close" type="button">Нет</button>
+                <button class="uk-button uk-button-primary" type="button">
+                    <a class="uk-link-text" hx-delete="{{ url_for('delete_news_article', article_id=article.id) }}">Да</a> 
+                </button>
+            </p>
+        </div>
+    </div>
+  </div>
+
+  {% block images %}
+  {% include "/news_article/images.html" %}
+  {% endblock %}
+  
+  <!-- text -->
+  <div class="uk-container uk-container-small">
+    <p class="uk-margin-small-bottom">{{ article.description|safe }} </p>
+  </div>
+  <!-- text -->
+
+</section>
+
+<script>
+  document.body.addEventListener('htmx:afterSwap', function(event) {
+    // Инициализация модальных окон UIkit после добавления нового контента
+    if (UIkit.modal) {
+      document.querySelectorAll('[uk-modal]').forEach(function(element) {
+        UIkit.modal(element);
+      });
+    }
+  });
+</script>
